@@ -34,6 +34,7 @@ import javax.management.MBeanException;
 import javax.management.MalformedObjectNameException;
 import javax.management.NotificationListener;
 import javax.management.ReflectionException;
+import javax.management.openmbean.CompositeData;
 import javax.validation.constraints.NotNull;
 
 import org.apache.cassandra.repair.RepairParallelism;
@@ -162,4 +163,7 @@ public interface JmxProxy extends NotificationListener {
   Map<String, List<JmxStat>> collectLatencyMetrics()
       throws MalformedObjectNameException, IOException, AttributeNotFoundException,
           InstanceNotFoundException, MBeanException, ReflectionException;
+
+  Set<CompositeData> listStreams();
+
 }
