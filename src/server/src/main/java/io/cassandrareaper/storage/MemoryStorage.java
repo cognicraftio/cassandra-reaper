@@ -455,7 +455,8 @@ public final class MemoryStorage implements IStorage {
                 unit.getNodes(),
                 unit.getDatacenters(),
                 unit.getBlacklistedTables(),
-                unit.getRepairThreadCount()));
+                unit.getRepairThreadCount(),
+                run.getMajorCompaction()));
       }
       return runStatuses;
     }

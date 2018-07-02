@@ -99,7 +99,8 @@ public final class RepairScheduleResource {
       @QueryParam("nodes") Optional<String> nodesToRepairParam,
       @QueryParam("datacenters") Optional<String> datacentersToRepairParam,
       @QueryParam("blacklistedTables") Optional<String> blacklistedTableNamesParam,
-      @QueryParam("repairThreadCount") Optional<Integer> repairThreadCountParam) {
+      @QueryParam("repairThreadCount") Optional<Integer> repairThreadCountParam,
+      @QueryParam("majorCompaction") Optional<String> majorCompactionParam) {
 
     try {
       Response possibleFailResponse = RepairRunResource.checkRequestForAddRepair(
@@ -238,7 +239,8 @@ public final class RepairScheduleResource {
             owner.get(),
             segments,
             parallelism,
-            intensity);
+            intensity,
+            majorCompactionParam.isPresent() ? Boolean.parseBoolean(majorCompactionParam.get()) : false);
 
         return Response.created(buildRepairScheduleUri(uriInfo, newRepairSchedule)).build();
       }
